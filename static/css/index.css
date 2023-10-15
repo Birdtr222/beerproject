@@ -1,0 +1,598 @@
+/*산돌삼립호빵체Outline*/
+@font-face {
+    font-family: 'SDSamliphopangche_Outline';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --main-top: 35px;
+}
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+    /*background-color: #f6f6f6;*/
+}
+body {
+    background: linear-gradient(-45deg, #ffd500, #f6bc29, #ffda1c, #ffb700);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/*헤더시작*/
+
+/*컨테이너*/
+.main-container {
+    width: 100%;
+    height: auto;
+    /*background-color: #6e6e6e;*/
+    position: relative;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.main-container header {
+    width: 90%;
+    height: 610px;
+    /*background-color: #FE5F55;*/
+    margin: auto;
+
+}
+
+/*로그인아이디보여주기*/
+.main-container header .loginID {
+    text-align: left;
+    position: absolute;
+    top: var(--main-top);
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/*필터링보여주기*/
+.main-container header .category {
+    text-align: center;
+    display: flex;
+    position: absolute; z-index: 2;
+    top: var(--main-top);
+    left: 50%;
+    margin-left: -135px;
+    font-size: 20px;
+}
+
+.main-container header .category ul {
+    margin: auto;
+    font-weight: bold;
+}
+
+.main-container header .category ul li{
+    list-style: none;
+}
+
+.main-container header .category > ul > li {
+    float: left;
+    width: 90px;
+    position: relative;
+}
+
+.main-container header .category > ul > li > ul {
+    width: 90px;
+    display:none;
+    position: absolute;
+    font-size: 15px;
+    background: rgba(255, 255, 255, 0.87);
+    color: #333;
+    text-align: center;
+}
+
+.main-container header .category ul li:hover ul {
+    display: block;
+}
+
+.main-container header .category ul li ul li:hover {
+    background: rgba(250, 202, 112, 0.87);
+    transition: ease 1s;
+}
+
+.main-container header .category ul li .class-country2-box {
+    border-radius: 3px;
+}
+
+.main-container header .category ul li .class-fermentation2-box {
+    border-radius: 3px;
+}
+
+.main-container header .category ul li .class-ABV2-box {
+    border-radius: 3px;
+}
+
+/*로그인버튼*/
+.main-container header .loginBtn {
+    position: absolute;
+    top: var(--main-top);
+    right: 10%;
+    outline: none;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    border: 1px solid transparent;
+    border-radius: 30px;
+    transition-property: background-color, border-color, color, box-shadow, filter;
+    transition-duration: .3s;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    color: #fff;
+    background-color: #000000;
+    box-shadow: inset 0 0 0 2px #000000;
+    height: 45px;
+    width: 180px;
+}
+
+.main-container header .loginBtn:hover {
+    color: #000000;
+    background-color: transparent;
+    }
+
+/*타이틀이름*/
+.main-container header .headline-box {
+    position: relative;
+    text-align: center;
+    top: 210px;
+}
+
+.main-container header .headline-box .headline {
+    font-weight: bold;
+    /*font-size: 55px;*/
+    font-size: 90px;
+    font-family: 'SDSamliphopangche_Outline';
+    color: #292721;
+}
+
+.main-container header .headline-box .headline-sub {
+    margin: 20px;
+    font-size: 20px;
+}
+
+/*검색창*/
+.main-container header .search-box {
+    position: absolute;
+    top: 440px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.main-container header .search-box .search-input {
+    padding: 10px;
+    width: 80px;
+    height: 80px;
+    background: none;
+    border: 4px solid #ffffff;
+    border-radius: 50px;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 26px;
+    color: #ffffff;
+    outline: none;
+    transition: .5s;
+}
+
+.main-container header .search-box:hover .search-input {
+    width: 350px;
+    background: rgba(250, 192, 25, 0.7);
+    border-radius: 10px;
+}
+
+i {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translate(-50%, -50%);
+    font-size: 26px;
+    color: #fff;
+    transition: .2s;
+}
+.main-container header .search-box:hover i {
+    opacity: 0;
+    z-index: -1;
+}
+
+/*그냥 멋임 beerCollection*/
+.beer-collection {
+    color: #463707;
+    position: relative;
+    top: 360px;
+    left: 30px;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+/*모두보기*/
+#all {
+    color: #463707;
+    position: relative;
+    top: 305px;
+    left: 90%;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+/* 섹션시작 */
+section{
+    /*background-color: #d6d5d5;*/
+    width: 90%;
+    margin: 30px auto;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 섹션위치 */
+section .section-inner{
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    /*justify-content: center;*/
+    justify-content: flex-start;
+    align-content: flex-start;
+    /*background-color: whitesmoke;*/
+    color: black;
+}
+
+/* 카드컨텐츠 */
+section .section-inner .section-contents{
+    margin: 10px;
+    width: 430px;
+    height: 270px;
+    flex-direction: row;
+    position: relative;
+    /*border: 3px solid #FAC019;*/
+    border-radius: 10px;
+    padding-right: 15px;
+    line-height : 190%;
+    /*background: linear-gradient(0deg, #ffffff, #e7ac00);*/
+    /*background-size: 300% 300%;*/
+    /*animation: gradient 15s ease infinite;*/
+    background-color: rgba(255, 255, 255, 0.96);
+}
+
+/* 카드 이미지 */
+section .section-inner .section-contents .section-contents-img{
+    position: absolute;
+    width: 180px;
+    height: 240px;
+    border-radius: 20px;
+    margin: 10px 0px 0px 10px;
+}
+
+/* 카드 네임 */
+section .section-inner .section-contents .section-contents-name{
+    position: absolute;
+    top: 30px;
+    left: 200px;
+    flex-wrap: wrap;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+/* 국가 */
+section .section-inner .section-contents .section-contents-country{
+    position: absolute;
+    top: 110px;
+    left: 200px;
+    flex-wrap: wrap;
+    /*width: 180px;*/
+    font-size: 25px;
+}
+
+/* 알콜도수 */
+section .section-inner .section-contents .section-contents-ABV{
+    position: absolute;
+    top: 150px;
+    left: 200px;
+    flex-wrap: wrap;
+    font-size: 25px;
+}
+
+/* 좋아요버튼 */
+section .section-inner .section-contents .section-contents-like{
+    position: absolute;
+    top: 210px;
+    left: 345px;
+    flex-wrap: wrap;
+}
+section .section-inner .section-contents .section-contents-like .like_hover{
+    position: absolute;
+    top: 210px;
+    left: 350px;
+    flex-wrap: wrap;
+    display: none;
+}
+section .section-inner .section-contents .section-contents-like:hover .like {
+    display: block;
+}
+
+section .section-inner .section-contents .section-contents-like .section-contents-likeBtn {
+    display: none;
+}
+
+/* 좋아요 수*/
+section .section-inner .section-contents .section-contents-count{
+    position: absolute;
+    top: 213px;
+    left: 385px;
+    flex-wrap: wrap;
+    font-size: 25px;
+    color: #FAC019;
+}
+
+/*페이지네이션*/
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius:50%;
+}
+
+.pagination a.active {
+    background-color: #ffffff;
+    color: #ffae00;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: silver;
+}
+
+/*footer*/
+footer{
+    width: 100%;
+    height: 130px;
+    color: #333333;
+}
+
+footer .container{
+    padding: 20px;
+    text-align: center;
+}
+
+
+/*scroll to top*/
+.scroll-to-top {
+    width:42px;
+    height: 42px;
+    background-color: #333;
+    color: #ffffff;
+    border: 2px solid #333;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index:9;
+}
+
+/*맥주거품*/
+#background-wrap {
+    bottom: 0;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: -1;
+}
+/* KEYFRAMES */
+
+@-webkit-keyframes animateBubble {
+    0% {
+        margin-top: 1000px;
+    }
+    100% {
+        margin-top: -100%;
+    }
+}
+
+@-moz-keyframes animateBubble {
+    0% {
+        margin-top: 1000px;
+    }
+    100% {
+        margin-top: -100%;
+    }
+}
+
+@keyframes animateBubble {
+    0% {
+        margin-top: 1000px;
+    }
+    100% {
+        margin-top: -100%;
+    }
+}
+
+@-webkit-keyframes sideWays {
+    0% {
+        margin-left:0px;
+    }
+    100% {
+        margin-left:50px;
+    }
+}
+
+@-moz-keyframes sideWays {
+    0% {
+        margin-left:0px;
+    }
+    100% {
+        margin-left:50px;
+    }
+}
+
+@keyframes sideWays {
+    0% {
+        margin-left:0px;
+    }
+    100% {
+        margin-left:50px;
+    }
+}
+
+/* ANIMATIONS */
+
+.x1 {
+    -webkit-animation: animateBubble 15s linear infinite, sideWays 2s ease-in-out infinite alternate;
+	-moz-animation: animateBubble 15s linear infinite, sideWays 2s ease-in-out infinite alternate;
+	animation: animateBubble 15s linear infinite, sideWays 2s ease-in-out infinite alternate;
+
+	left: -5%;
+	top: 5%;
+
+	-webkit-transform: scale(0.6);
+	-moz-transform: scale(0.6);
+	transform: scale(0.6);
+}
+
+.x2 {
+    -webkit-animation: animateBubble 10s linear infinite, sideWays 4s ease-in-out infinite alternate;
+	-moz-animation: animateBubble 10s linear infinite, sideWays 4s ease-in-out infinite alternate;
+	animation: animateBubble 10s linear infinite, sideWays 4s ease-in-out infinite alternate;
+
+	left: 5%;
+	top: 80%;
+
+	-webkit-transform: scale(0.4);
+	-moz-transform: scale(0.4);
+	transform: scale(0.4);
+}
+
+.x3 {
+    -webkit-animation: animateBubble 18s linear infinite, sideWays 2s ease-in-out infinite alternate;
+	-moz-animation: animateBubble 18s linear infinite, sideWays 2s ease-in-out infinite alternate;
+	animation: animateBubble 18s linear infinite, sideWays 2s ease-in-out infinite alternate;
+
+	left: 10%;
+	top: 40%;
+
+	-webkit-transform: scale(0.7);
+	-moz-transform: scale(0.7);
+	transform: scale(0.7);
+}
+
+.x4 {
+    -webkit-animation: animateBubble 7s linear infinite, sideWays 3s ease-in-out infinite alternate;
+	-moz-animation: animateBubble 7s linear infinite, sideWays 3s ease-in-out infinite alternate;
+	animation: animateBubble 7s linear infinite, sideWays 3s ease-in-out infinite alternate;
+
+	left: 20%;
+	top: 0;
+
+	-webkit-transform: scale(0.3);
+	-moz-transform: scale(0.3);
+	transform: scale(0.3);
+}
+
+.x5 {
+    -webkit-animation: animateBubble 19s linear infinite, sideWays 4s ease-in-out infinite alternate;
+	-moz-animation: animateBubble 19s linear infinite, sideWays 4s ease-in-out infinite alternate;
+	animation: animateBubble 19s linear infinite, sideWays 4s ease-in-out infinite alternate;
+
+	left: 30%;
+	top: 50%;
+
+	-webkit-transform: scale(0.5);
+	-moz-transform: scale(0.5);
+	transform: scale(0.5);
+}
+
+.x6 {
+    -webkit-animation: animateBubble 11s linear infinite, sideWays 2s ease-in-out infinite alternate;
+	-moz-animation: animateBubble 11s linear infinite, sideWays 2s ease-in-out infinite alternate;
+	animation: animateBubble 11s linear infinite, sideWays 2s ease-in-out infinite alternate;
+
+	left: 50%;
+	top: 0;
+
+	-webkit-transform: scale(0.8);
+	-moz-transform: scale(0.8);
+	transform: scale(0.8);
+}
+
+.x7 {
+    -webkit-animation: animateBubble 10s linear infinite, sideWays 2s ease-in-out infinite alternate;
+	-moz-animation: animateBubble 10s linear infinite, sideWays 2s ease-in-out infinite alternate;
+	animation: animateBubble 10s linear infinite, sideWays 2s ease-in-out infinite alternate;
+
+	left: 65%;
+	top: 70%;
+
+	-webkit-transform: scale(0.4);
+	-moz-transform: scale(0.4);
+	transform: scale(0.4);
+}
+
+.x8 {
+    -webkit-animation: animateBubble 12s linear infinite, sideWays 3s ease-in-out infinite alternate;
+	-moz-animation: animateBubble 12s linear infinite, sideWays 3s ease-in-out infinite alternate;
+	animation: animateBubble 12s linear infinite, sideWays 3s ease-in-out infinite alternate;
+
+	left: 80%;
+	top: 10%;
+
+	-webkit-transform: scale(0.3);
+	-moz-transform: scale(0.3);
+	transform: scale(0.3);
+}
+
+.x9 {
+    -webkit-animation: animateBubble 19s linear infinite, sideWays 4s ease-in-out infinite alternate;
+	-moz-animation: animateBubble 19s linear infinite, sideWays 4s ease-in-out infinite alternate;
+	animation: animateBubble 19s linear infinite, sideWays 4s ease-in-out infinite alternate;
+
+	left: 90%;
+	top: 50%;
+
+	-webkit-transform: scale(0.6);
+	-moz-transform: scale(0.6);
+	transform: scale(0.6);
+}
+
+.x10 {
+    -webkit-animation: animateBubble 5s linear infinite, sideWays 2s ease-in-out infinite alternate;
+	-moz-animation: animateBubble 5s linear infinite, sideWays 2s ease-in-out infinite alternate;
+	animation: animateBubble 5s linear infinite, sideWays 2s ease-in-out infinite alternate;
+
+	left: 80%;
+	top: 80%;
+
+	-webkit-transform: scale(0.3);
+	-moz-transform: scale(0.3);
+	transform: scale(0.3);
+}
+
+/* OBJECTS */
+
+.bubble {
+    -webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+
+    -webkit-box-shadow: 0 20px 30px rgba(176, 153, 105, 0.13), inset 0px 10px 30px 5px rgba(253, 251, 247, 0.55);
+	-moz-box-shadow: 0 20px 30px rgba(176, 153, 105, 0.13), inset 0px 10px 30px 5px rgba(253, 251, 247, 0.55);
+	box-shadow: 0 20px 30px rgba(176, 153, 105, 0.13), inset 0px 10px 30px 5px rgba(253, 251, 247, 0.55);
+
+    height: 200px;
+	position: absolute;
+	width: 200px;
+}

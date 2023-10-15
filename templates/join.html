@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <!-- Webpage Title -->
+    <title>세상의모든맥주 | TFTB | 회원가입</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+     <script defer src="{{ url_for('static', filename='javascript/joinCheck.js')}}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/join.css')}}">
+
+    <!-- 구글폰트 노토산스 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+          rel="stylesheet">
+
+    <script>
+        $(document).ready(function() {
+            $("#input_inf").hide()
+        });
+
+        function agree() {
+            $("#agree_inf").hide();
+            $("#input_inf").show();
+        }
+        function goLogin() {
+            window.location = '/index.html'
+        }
+    </script>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <script>
+            alert("{{messages[-1]}}")
+        </script>
+    {% endif %}
+    {% endwith %}c
+
+</head>
+<body>
+<div id="JoinWrap">
+    <div id="JoinHead">
+        <h1>
+            <a id="BeerLogo" class="link_Beer">
+                <span class="ir_wa">세상의모든맥주</span>
+            </a>
+        </h1>
+    </div>
+    <div class="section_join">
+        <form id="agree_inf">
+            <p>개인정보수집이용동의</p>
+
+            <div class="agree_list">
+                <textarea id="agreeTextArea" readonly="readonly" style="resize: none; width:45%; height: 150px;">개인정보보호법에 따라 ★세상의모든맥주★에 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간, 동의 거부권 및 동의 거부시 불이익에 관한 사항을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다.&#10;1. 수집하는 개인정보&#10;이용자가 별점, 좋아요 등과 같이 개인화 혹은 회원제 서비스를 이용하기 위해 회원가입을 할 경우, ★세상의모든맥주★는 서비스 이용을 위해 필요한 최소한의 개인정보를 수집합니다.&#10;회원가입 시점에 ★세상의모든맥주★가 이용자로부터 수집하는 개인정보는 아래와 같습니다.&#10;- 회원 가입 시에 ‘아이디, 비밀번호, 이름’을 필수항목으로 수집합니다.&#10;2. 수집한 개인정보의 이용&#10;★세상의모든맥주★의 회원관리, 서비스 개발・제공 및 향상 등 아래의 목적으로만 개인정보를 이용합니다.&#10;- 회원 가입 의사의 확인, 이용자 식별 등 회원관리를 위하여 개인정보를 이용합니다.&#10;- 콘텐츠 등 기존 서비스 제공에 더하여, 인구통계학적 분석, 서비스 방문 및 이용기록의 분석 등 신규 서비스 요소의 발굴 및 기존 서비스 개선 등을 위하여 개인정보를 이용합니다.&#10;- 서비스 이용에 대한 통계, 서비스 분석 및 통계에 따른 맞춤 서비스 제공 등에 개인정보를 이용합니다.&#10;3. 개인정보의 보관기간&#10;회사는 원칙적으로 이용자의 개인정보를 회원 탈퇴 시 지체없이 파기하고 있습니다.★★탈퇴가능?★★&#10;단, 이용자에게 개인정보 보관기간에 대해 별도의 동의를 얻은 경우, 또는 법령에서 일정 기간 정보보관 의무를 부과하는 경우에는 해당 기간 동안 개인정보를 안전하게 보관합니다.&#10;이용자에게 개인정보 보관기간에 대해 회원가입 시 동의를 얻은 경우는 아래와 같습니다.&#10;로그인 기록: 평생★★&#10;4. 개인정보 수집 및 이용 동의를 거부할 권리&#10;이용자는 개인정보의 수집 및 이용 동의를 거부할 권리가 있습니다. 회원가입 시 수집하는 최소한의 개인정보, 즉, 필수 항목에 대한 수집 및 이용 동의를 거부하실 경우, 회원가입이 어려울 수 있습니다.</textarea>
+            </div>
+            <label for="agreeCheck" class="lab_c">동의</label>
+            <input type="button" id="agreeCheck" onclick="agree()">
+        </form>
+        <form id="input_inf" name = "form", action="/join" method="POST">
+            <div>
+                <fieldset class="fld_comm">
+                        <div class="box_inp">
+                            <label for="inputId" class="lab_g">아이디 </label>
+                            <input type="text" id="inputId" name="id" value="" class="tf_g" style="ime-mode:disabled;">
+                        </div>
+                        <div class="box_inp">
+                            <label for="inputPwd" class="lab_g">비밀번호 </label>
+                            <input type="password" id="inputPwd" name="pw" class="tf_g" maxlength="32"
+                                   autocomplete="off" style="ime-mode:disabled;">
+                        </div>
+                        <div class="box_inp">
+                            <label for="inputPwdCheck" class="lab_g">비번확인 </label>
+                            <input type="password" id="inputPwdCheck" name="pw_check" class="tf_g" maxlength="32"
+                                   autocomplete="off" style="ime-mode:disabled;">
+                        </div>
+                        <div class="box_inp">
+                            <label for="inputName" class="lab_g">이름 </label>
+                            <input type="text" id="inputName" name="name" value="" class="tf_g" style="ime-mode:disabled;">
+                        </div>
+                    </fieldset>
+
+                <div>
+                    <button type="submit" id="join_finish" >가입하기</button>
+                </div>
+            </div>
+
+        </form>
+
+
+        <div class="Copyright">
+            <p>© 2022. TwoFrontThreeBack. All rights reserved.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

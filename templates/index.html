@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 구글아이콘 -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link
+    href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+    rel="stylesheet">
+  <!-- 리셋 css -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css')}}">
+  <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- 구글폰트 -->
+  <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Nanum+Gothic:wght@400;700&family=Nanum+Myeongjo&family=Spline+Sans:wght@300&family=Vujahday+Script&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:700" rel="stylesheet">
+  <!-- 타이틀 -->
+  <title>세상의모든맥주 | TFTB</title>
+
+  <meta property="og:title" content="세상의모든맥주" />
+  <meta property="og:description" content="세상의 모든 맥주를 모아보았다. 사실 아직 다 모은건 아니지만.." />
+  <meta property="og:image" content="{{ url_for('static', filename='ogimage.png') }}" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+  <script defer src="{{ url_for('static', filename='javascript/pagination.js')}}"></script>
+  <script defer src="{{ url_for('static', filename='javascript/filtering.js')}}"></script>
+  <script defer src="{{ url_for('static', filename='javascript/search.js')}}"></script>
+
+
+  <!--검색창 css-->
+  <script src="https://kit.fontawesome.com/afd6aa68df.js" crossorigin="anonymous"></script>
+
+  <script>
+      $(document).ready(function () {
+        // showbeers();
+          boardlist(1)
+
+      });
+
+      function showbeers() {
+        $.ajax({
+            type: "GET",
+            url: "/page",
+            data: {},
+            success: function(response){
+              let beers = response['all_beers']
+
+              for(let i = 0; i< beers.length; i++) {
+                let country_sub = beers[i]['국가 소분류']
+                let name = beers[i]['맥주 이름']
+                let degree = beers[i]['도수']
+                let image = beers[i]['이미지']
+
+                let temp_html = `<div class="section-contents">
+                                  <img class="section-contents-img" src="${image}" alt="">
+                                  <div class="section-contents-country"><p>${country_sub}</p></div>
+                                  <div class="section-contents-name"><p>${name}</p></div>
+                                  <div class="section-contents-ABV"><p>${degree}</p></div>
+                                  <div class="section-contents-like"><img src="static/img/like.png" alt="" width="30px"></div>
+                                 </div>`
+                $('#container').append(temp_html)
+              }
+            }
+          })
+        }
+        function likebeer(name) {
+          $.ajax({
+            type: 'POST',
+            url: '/api/like',
+            data: {name_give:name},
+            success: function (response) {
+            alert(response['msg']);
+            window.location.reload()
+            }
+          });
+        }
+  </script>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <script>
+            alert("{{messages[-1]}}")
+        </script>
+    {% endif %}
+{% endwith %}
+
+
+  <style type="text/css">
+a {
+  color : #969696;
+  text-decoration: none;
+}
+a:link {
+  text-decoration: none;
+}
+a:hover {
+  color: #fff;
+}
+
+/*페이지네이션가운데보내기*/
+#pg{
+    text-align: center;
+    margin: auto;
+}
+.pagination {
+    display: inline-block;
+    margin-top: 30px;
+}
+  </style>
+</head>
+
+<body>
+<div class="main-container">
+  <header>
+<!--      <p class="testtest">안녕</p>-->
+      <div class="loginID" id="user_id">
+          {%if userid%}
+          {{userid}}<a>님 안녕하세요!</a><br>
+          <a onclick="Logout()" href="/logout">로그아웃</a>
+          <script>$("#login_btn").show();</script>
+          {%endif%}
+      </div>
+
+    <!--필터링-->
+    <div class="category">
+        <ul>
+            <li class="class-country1">
+              <p>국가별</p>
+              <ul class="class-country2-box">
+                <li class="class-country2"><a onclick="filtering('/domestic', 'all_korean_beers')" id="domestic" href="#">국산</a></li>
+                <li class="class-country2"><a onclick="filtering('/income', 'all_imported_beers')" id="income" href="#">수입</a></li>
+              </ul>
+            </li>
+            <li class="class-fermentation1">
+              <p>분류별</p>
+              <ul class="class-fermentation2-box">
+                <li class="class-fermentation2"><a onclick="filtering('/apa', 'all_apa')" id="apa" href="#">APA</a></li>
+                <li class="class-fermentation2"><a onclick="filtering('/ipa', 'all_ipa')" id="ipa" href="#">IPA</a></li>
+                <li class="class-fermentation2"><a onclick="filtering('/lager', 'all_lager')" href="#">라거</a></li>
+                <li class="class-fermentation2"><a onclick="filtering('/radler', 'all_radler')" id="radler" href="#">라들러</a></li>
+                <li class="class-fermentation2"><a onclick="filtering('/wheetBeer', 'all_wheetBeers')" id="wheat_beer" href="#">밀맥주</a></li>
+                <li class="class-fermentation2"><a onclick="filtering('/weizen', 'all_weizen')" id="weizen" href="#">바이젠</a></li>
+                <li class="class-fermentation2"><a onclick="filtering('/cider', 'all_cider')" id="cider" href="#">사이더</a></li>
+                <li class="class-fermentation2"><a onclick="filtering('/stout', 'all_stout')" id="stout" href="#">스타우트</a></li>
+                <li class="class-fermentation2"><a onclick="filtering('/ale', 'all_ale')" id="ale" href="#">에일</a></li>
+                <li class="class-fermentation2"><a onclick="filtering('/pilsner', 'all_pilsner')" id="pilsner" href="#">필스너</a></li>
+                <li class="class-fermentation2"><a onclick="filtering('/darkBeer', 'all_darkBeer')" id="dark_beer" href="#">흑맥주</a></li>
+              </ul>
+            </li>
+            <li class="class-ABV1">
+              <p>도수별</p>
+              <ul class="class-ABV2-box">
+                <li class="class-ABV2-"><a onclick="filtering('/degree2', 'all_degree2')" id="2" href="#">2.0% ~ 2.9%</a></li>
+                <li class="class-ABV2-"><a onclick="filtering('/degree3', 'all_degree3')" id="3" href="#">3.0% ~ 3.9%</a></li>
+                <li class="class-ABV2-"><a onclick="filtering('/degree4', 'all_degree4')" id="4" href="#">4.0% ~ 4.9%</a></li>
+                <li class="class-ABV2-"><a onclick="filtering('/degree5', 'all_degree5')" id="5" href="#">5.0% ~ 5.9%</a></li>
+                <li class="class-ABV2-"><a onclick="filtering('/degree6', 'all_degree6')" id="6" href="#">6.0% ~ 6.9%</a></li>
+                <li class="class-ABV2-"><a onclick="filtering('/degree7', 'all_degree7')" id="7" href="#">7.0% ~ 7.9%</a></li>
+                <li class="class-ABV2-"><a onclick="filtering('/degree8', 'all_degree8')" id="8" href="#">8.0% ~ 8.9%</a></li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="loginBtndiv">
+      <button name="login_btn" id="login_btn" type="button" class="loginBtn" onclick="location.href='/login'" >login</button>
+
+    </div>
+    <div class="headline-box">
+        <div>
+        <a href="/">
+          <h1 class="headline">세상의 모든 맥주</h1>
+        </a>
+      </div>
+      <p class="headline-sub">Sesang-ui modeun maegjuleul moaboassda. Sasil-eun jeonbu mo-eunge anijiman
+      <br>da moassdago chija. Eojjeogojeojjeogo-eojjeogo..</p>
+    </div>
+    <!-- 검색 HTML -->
+
+    <form name="search" method="GET" action="/api/search" onsubmit="return false">
+      <div class="search-box">
+        <form name="search">
+          <input type="text" onmouseout="document.search.txt.value = ''" id="search_name" name="search_name" class="search-input" onkeypress="if( event.keyCode == 13 ){search_client();}"/>
+        </form>
+        <i class="fas fa-search"></i>
+      </div>
+    </form>
+
+    <div>
+      <p class="beer-collection">Beer Collection</p>
+      <u><a id="all" onclick="showbeers()" href="/"> ViewAll </a></u>
+    </div>
+
+  </header>
+
+  <section>
+    <div class="section-inner" id = "container"></div>
+      <div id="pg">
+          <div class="pagination">
+              <a href="#" onclick="boardlist()">&laquo;</a>
+              <a href="#" onclick="boardlist(1)" class="active">1</a>
+              <a href="#" onclick="boardlist(2)">2</a>
+              <a href="#" onclick="boardlist(3)">3</a>
+              <a href="#" onclick="boardlist(4)">4</a>
+              <a href="#" onclick="boardlist(5)">5</a>
+              <a href="#" onclick="boardlist(6)">6</a>
+              <a href="#" onclick="boardlist(7)">7</a>
+              <a href="#" onclick="boardlist(8)">8</a>
+              <a href="#" onclick="boardlist(9)">9</a>
+              <a href="#" onclick="boardlist()">&raquo;</a>
+          </div>
+      </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2022. TwoFrontThreeBack. All rights reserved.</p>
+
+    </div>
+  </footer>
+
+<!-- scroll to top-->
+  <script>{ window.scrollTo(0, 0); }</script>
+  <div class="scroll-to-top" onclick= "scrollToTop()">
+    <div class="material-icons-outlined" onclick= "scrollToTop()">arrow_upward</div>
+  </div>
+  <script> function scrollToTop() { window.scrollTo(0, 0); } </script>
+
+
+<!--맥주거품-->
+    <div id="background-wrap">
+        <div class="bubble x1"></div>
+        <div class="bubble x2"></div>
+        <div class="bubble x3"></div>
+        <div class="bubble x4"></div>
+        <div class="bubble x5"></div>
+        <div class="bubble x6"></div>
+        <div class="bubble x7"></div>
+        <div class="bubble x8"></div>
+        <div class="bubble x9"></div>
+        <div class="bubble x10"></div>
+    </div>
+
+</div>
+
+</body>
+
+</html>
